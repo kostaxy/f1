@@ -1,22 +1,25 @@
+import 'react-native-gesture-handler'
 import React from 'react';
 import News from './src/screens/News/News';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import Drivers from './src/screens/Drivers/Drivers';
+import Drivers from './src/screens/Scoreboard/Drivers';
+import { createDrawerNavigator } from '@react-navigation/drawer';
+import Scoreboard from './src/screens/Scoreboard/Scoreboard';
 
 function App(): React.JSX.Element {
 
-  const Stack = createNativeStackNavigator();
+  const Drawer = createDrawerNavigator();
   return (
     <NavigationContainer>
-      <Stack.Navigator>
-        <Stack.Screen
+      <Drawer.Navigator>
+        <Drawer.Screen
           name="News"
           component={News}
           options={{ title: 'F1 News' }}
         />
-        <Stack.Screen name="Drivers" component={Drivers} />
-      </Stack.Navigator>
+        <Drawer.Screen name="Scoreboard" component={Scoreboard} />
+      </Drawer.Navigator>
     </NavigationContainer>
   );
 }

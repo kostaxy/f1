@@ -19,7 +19,7 @@ const News = () => {
     async function getNews() {
       try {
         const newsData = await fetchNews();
-        const loadedNews: News[] = newsData.map((el: any) => {
+        const loadedNews = newsData?.map((el: any) => {
           return {
             id: el?.dataSourceIdentifier,
             headline: el?.headline,
@@ -28,8 +28,11 @@ const News = () => {
             imageUrl: el?.images[0]?.url
           }
         })
-
-        setNews([...loadedNews])
+        if (loadedNews) {
+          setNews([...loadedNews])
+        } else {
+          setNews([])
+        }
       } catch (err) {
         console.log('Error occured when fetching books');
       }
