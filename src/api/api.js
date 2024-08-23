@@ -50,7 +50,7 @@ const fetchDrivers = async () => {
       .map(el => el.value)
       .map(el => el?.data);
 
-    //extract avatars and teams for drivers in array of obj
+    //extract avatars for drivers in array of obj
     const avatars = allDriversInfoByIdData.map(el => ({
       id: el.id,
       headshot: el?.headshot,
@@ -91,7 +91,6 @@ const fetchDriverById = async (idAthlete, isPromiseMode) => {
   }
 };
 
-//get controllers
 const fetchConstructors = async () => {
   const options = JSON.parse(JSON.stringify(baseOptions));
   options.url = API_ROUTES.controllersUrl;
@@ -105,4 +104,18 @@ const fetchConstructors = async () => {
   }
 };
 
-export {fetchNews, fetchDrivers, fetchConstructors};
+//get controllers
+const fetchSchedule = async () => {
+  const options = JSON.parse(JSON.stringify(baseOptions));
+  options.url = `${API_ROUTES.scheduleUrl}?year=${new Date().getFullYear()}`;
+  try {
+    const response = await axios.request(options);
+    const data = await response.data;
+
+    return data;
+  } catch (error) {
+    console.error(error);
+  }
+};
+
+export {fetchNews, fetchDrivers, fetchConstructors, fetchSchedule};

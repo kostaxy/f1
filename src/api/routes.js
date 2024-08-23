@@ -5,4 +5,5 @@ export const API_ROUTES = {
   driversUrl: `${baseUrl}/standings-drivers`,
   driverInfoById: `${baseUrl}/athlete-info`,
   controllersUrl: `${baseUrl}/standings-controllers`,
+  scheduleUrl: `${baseUrl}/schedule`,
 };
