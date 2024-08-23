@@ -6,6 +6,7 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import Drivers from './src/screens/Scoreboard/Drivers';
 import { createDrawerNavigator } from '@react-navigation/drawer';
 import Scoreboard from './src/screens/Scoreboard/Scoreboard';
+import Schedule from './src/screens/Schedule/Schedule';
 
 function App(): React.JSX.Element {
 
@@ -19,6 +20,7 @@ function App(): React.JSX.Element {
           options={{ title: 'F1 News' }}
         />
         <Drawer.Screen name="Scoreboard" component={Scoreboard} />
+        <Drawer.Screen name="Schedule" component={Schedule} />
       </Drawer.Navigator>
     </NavigationContainer>
   );
