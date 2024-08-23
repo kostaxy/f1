@@ -39,7 +39,7 @@ const Schedule = () => {
       try {
         const scheduleData = await fetchSchedule();
         if (scheduleData) {
-          const data = Object.values(!scheduleData).map((el) => {
+          const data = Object.values(scheduleData).map((el) => {
             return {
               ...el[0],
               startDate: new Date(el[0].startDate),
