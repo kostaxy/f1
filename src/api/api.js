@@ -1,7 +1,6 @@
 import axios from 'axios';
 import {API_ROUTES} from './routes';
 import {API_HOST, API_KEY} from '@env';
-import RNFS from 'react-native-fs';
 
 const baseOptions = {
   method: 'GET',
@@ -50,22 +49,17 @@ const fetchDrivers = async () => {
       .map(el => el.value)
       .map(el => el?.data);
 
-    //extract avatars for drivers in array of obj
-    const avatars = allDriversInfoByIdData.map(el => ({
-      id: el.id,
-      headshot: el?.headshot,
-      team: el?.vehicles[0]?.manufacturer,
-    }));
-    //set avatars to each driver array
-    allDriversData?.standings?.entries.forEach(el => {
-      const tempAvaArr = avatars.filter(ava => ava.id === el.athlete.id);
-      if (tempAvaArr.length) {
-        el.athlete.headshot = tempAvaArr[0]?.headshot;
-        el.athlete.team = tempAvaArr[0]?.team;
-      }
+    allDriversData?.standings?.entries.map(el => {
+      el.athlete = {
+        ...el.athlete,
+        ...allDriversInfoByIdData.filter(
+          drivInfo => drivInfo.id === el.athlete.id,
+        )[0],
+      };
+      return el;
     });
-    //return all drivers data and array of
-    return [allDriversData, allDriversInfoByIdData];
+
+    return allDriversData;
   } catch (error) {
     console.error(error);
   }
@@ -91,6 +85,7 @@ const fetchDriverById = async (idAthlete, isPromiseMode) => {
   }
 };
 
+//get controllers
 const fetchConstructors = async () => {
   const options = JSON.parse(JSON.stringify(baseOptions));
   options.url = API_ROUTES.controllersUrl;
@@ -104,7 +99,7 @@ const fetchConstructors = async () => {
   }
 };
 
-//get controllers
+//get schedule
 const fetchSchedule = async () => {
   const options = JSON.parse(JSON.stringify(baseOptions));
   options.url = `${API_ROUTES.scheduleUrl}?year=${new Date().getFullYear()}`;

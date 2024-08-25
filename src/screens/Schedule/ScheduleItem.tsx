@@ -21,19 +21,10 @@ const month = [
 
 const ScheduleItem = ({ raceEvent }: { raceEvent: RaceEvent }) => {
   return (
-    // <View>
-    //   <Text>
-    //     {`${raceEvent.startDate.getDate()} ${month[raceEvent.startDate.getMonth()]}`}
-    //   </Text>
-    //   <Text>
-    //     {raceEvent.startDate.getFullYear()}
-    //   </Text>
-    // </View>
-
     <View style={styles.item}>
       <View style={styles.date}>
-        <Text>{`${raceEvent.startDate.getDate()} ${month[raceEvent.startDate.getMonth()]}`}</Text>
-        <Text>{raceEvent.startDate.getFullYear()}</Text>
+        <Text>{`${raceEvent.endDate.getDate()} ${month[raceEvent.endDate.getMonth()]}`}</Text>
+        <Text>{raceEvent.endDate.getFullYear()}</Text>
       </View>
       <View style={raceEvent.completed ? styles.circleFinished : styles.circle}>
         <View style={[styles.circleBeforeAfter, styles.circleBefore]} />
