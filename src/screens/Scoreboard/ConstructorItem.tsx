@@ -2,12 +2,37 @@ import React from 'react'
 import { styles } from './styles'
 import { Text, TouchableOpacity, View } from 'react-native'
 
+interface Team {
+  id: string;
+  name: string;
+  displayName: string;
+  abbreviation: string;
+  shortDisplayName: string;
+  color: string;
+}
 
-const ConstructorItem = ({ item }: any) => {
+interface Stat {
+  name: string;
+  displayName: string;
+  shortDisplayName: string;
+  description: string;
+  abbreviation: string;
+  type: string;
+  value: number;
+  displayValue: string;
+  id?: string;
+  played?: boolean;
+}
+
+interface Constructor {
+  team: Team;
+  stats: Stat[];
+}
+
+const ConstructorItem: React.FC<{ item: Constructor }> = ({ item }) => {
   return (
     <TouchableOpacity
       style={styles.scoreboardListItem}
-      onPress={() => { console.log(`Pressed constructor ${item.team.id}`) }}
     >
       <Text style={styles.rank}>{item?.stats[0]?.value}</Text>
       <View style={styles.infoItem}>

@@ -1,24 +1,40 @@
 import React from 'react'
 import { Image, Text, TouchableOpacity, View } from 'react-native'
 import { styles } from './styles'
+import { RouteProp } from '@react-navigation/native';
+import { NativeStackNavigationProp } from '@react-navigation/native-stack';
+import { Driver } from './Drivers';
 
+// Define the types for navigation and route
+type RootStackParamList = {
+  DriverInfo: { driver: Driver };
+};
 
-const DriverItem = ({ item }: any) => {
+type DriverInfoScreenNavigationProp = NativeStackNavigationProp<RootStackParamList, 'DriverInfo'>;
+
+type Props = {
+  driver: Driver;
+  navigation: DriverInfoScreenNavigationProp;
+};
+
+const DriverItem = ({ driver, navigation }: Props) => {
   return (
 
     <TouchableOpacity
       style={styles.scoreboardListItem}
-      onPress={() => { console.log(`Pressed driver ${item.athlete.id}`) }}
+      onPress={() => {
+        navigation.navigate('DriverInfo', { driver });
+      }}
     >
-      <Text style={styles.rank}>{item?.stats[0]?.value}</Text>
+      <Text style={styles.rank}>{driver?.stats[0]?.value}</Text>
       <View style={styles.infoItem}>
         {
-          item?.athlete?.headshot
+          driver?.athlete?.headshot
             ?
             <Image
               style={styles.image}
               source={{
-                uri: item.athlete.headshot,
+                uri: driver.athlete.headshot,
               }} />
             :
             <Image
@@ -32,21 +48,21 @@ const DriverItem = ({ item }: any) => {
             <Image
               style={styles.flagImage}
               source={{
-                uri: item.athlete.flag.href
+                uri: driver.athlete.flag.href
               }} />
             <Text style={styles.infoItemNameText}>
-              {item.athlete.displayName}
+              {driver.athlete.displayName}
             </Text>
           </View>
 
           <View>
             <Text>
-              {item.athlete.team || "Formula 1 team"}
+              {driver.athlete?.vehicles[0]?.team || "Formula 1 team"}
             </Text>
           </View>
         </View>
       </View>
-      <Text style={styles.points}>{item.stats[1].value}</Text>
+      <Text style={styles.points}>{driver.stats[1].value}</Text>
     </TouchableOpacity>
   )
 }

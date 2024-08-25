@@ -3,11 +3,23 @@ import { useWindowDimensions } from 'react-native';
 import { TabView, SceneMap, TabBar } from 'react-native-tab-view';
 import Drivers from './Drivers';
 import Constructors from './Constructors';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import DriverInfo from './DriverInfo';
 
 
-type Props = {}
+const Stack = createNativeStackNavigator();
+const DriversRoute = () => {
+  return (
+    <Stack.Navigator
+      screenOptions={{
+        headerShown: false
+      }}>
+      <Stack.Screen name="Drivers" component={Drivers}></Stack.Screen>
+      <Stack.Screen name="DriverInfo" component={DriverInfo} ></Stack.Screen>
+    </Stack.Navigator>
+  )
+}
 
-const DriversRoute = () => (<Drivers />)
 const ConstructorsRoute = () => (<Constructors />)
 
 const renderScene = SceneMap({
@@ -15,7 +27,7 @@ const renderScene = SceneMap({
   teams: ConstructorsRoute,
 });
 
-const Scoreboard = (props: Props) => {
+const Scoreboard = () => {
 
 
   const layout = useWindowDimensions();
