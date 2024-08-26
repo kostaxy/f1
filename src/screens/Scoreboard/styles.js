@@ -7,33 +7,9 @@ export const styles = StyleSheet.create({
     height: 60,
     overflow: 'hidden',
     borderWidth: 1,
-    borderColor: '#303030',
+    borderColor: '#000',
   },
-  scoreHeader: {
-    display: 'flex',
-    flexDirection: 'row',
-    backgroundColor: '#002e5c',
-    padding: 5,
-    width: '100%',
-  },
-  rankHeader: {
-    color: '#fff',
-    width: '15%',
-    justifyContent: 'center',
-    textAlign: 'center',
-  },
-  infoItemHeader: {
-    color: '#fff',
-    width: '60%',
-    justifyContent: 'center',
-    paddingStart: 15,
-  },
-  pointsHeader: {
-    color: '#fff',
-    width: '25%',
-    justifyContent: 'center',
-    textAlign: 'center',
-  },
+
   scoreboardListItem: {
     display: 'flex',
     flexDirection: 'row',
@@ -47,7 +23,7 @@ export const styles = StyleSheet.create({
     justifyContent: 'center',
     textAlign: 'center',
     fontSize: 20,
-    color: '#000000',
+    color: '#ff232b',
     paddingStart: 10,
   },
   infoItem: {

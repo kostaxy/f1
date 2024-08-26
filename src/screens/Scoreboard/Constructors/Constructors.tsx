@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { FlatList, View } from 'react-native';
-import { fetchConstructors } from '../../api/api';
-import Header from './Header';
+import { fetchConstructors } from '../../../api/api';
+import Header from '../Header';
 import ConstructorItem from './ConstructorItem';
 
 

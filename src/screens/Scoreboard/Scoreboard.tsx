@@ -1,10 +1,10 @@
 import React from 'react'
-import { useWindowDimensions } from 'react-native';
+import { StyleSheet, useWindowDimensions } from 'react-native';
 import { TabView, SceneMap, TabBar } from 'react-native-tab-view';
-import Drivers from './Drivers';
-import Constructors from './Constructors';
+import Drivers from './Drivers/AllDrivers/Drivers';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import DriverInfo from './DriverInfo';
+import DriverInfo from './Drivers/DriverInfo/DriverInfo';
+import Constructors from './Constructors/Constructors';
 
 
 const Stack = createNativeStackNavigator();
@@ -44,10 +44,26 @@ const Scoreboard = () => {
       renderScene={renderScene}
       onIndexChange={setIndex}
       initialLayout={{ width: layout.width }}
-      renderTabBar={props => <TabBar {...props} style={{ backgroundColor: '#000000' }} />}
+      renderTabBar={props => <TabBar {...props}
+        indicatorStyle={styles.indicator}
+        style={styles.tabBar}
+        labelStyle={styles.label}
+        activeColor="#ff232b"
+      />}
     />
   );
 }
 
+const styles = StyleSheet.create({
+  tabBar: {
+    backgroundColor: '#fff', // Background color of the tab bar
+  },
+  indicator: {
+    backgroundColor: '#ff232b', // Red color for the underline
+  },
+  label: {
+    color: '#000', // Default black color for tab labels
+  },
+});
 
 export default Scoreboard

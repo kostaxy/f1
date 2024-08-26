@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { View } from 'react-native';
-import { fetchDrivers } from '../../api/api';
+import { fetchDrivers } from '../../../../api/api';
 import { FlatList } from 'react-native-gesture-handler';
 import DriverItem from './DriverItem';
-import Header from './Header';
+import Header from '../../Header';
 
 type StandingsResponse = {
   standings: Standings;

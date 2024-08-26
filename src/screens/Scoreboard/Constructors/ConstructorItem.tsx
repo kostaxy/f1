@@ -1,5 +1,5 @@
 import React from 'react'
-import { styles } from './styles'
+import { styles } from '../styles'
 import { Text, TouchableOpacity, View } from 'react-native'
 
 interface Team {
@@ -31,7 +31,7 @@ interface Constructor {
 
 const ConstructorItem: React.FC<{ item: Constructor }> = ({ item }) => {
   return (
-    <TouchableOpacity
+    <View
       style={styles.scoreboardListItem}
     >
       <Text style={styles.rank}>{item?.stats[0]?.value}</Text>
@@ -45,7 +45,7 @@ const ConstructorItem: React.FC<{ item: Constructor }> = ({ item }) => {
         </View>
       </View>
       <Text style={styles.points}>{item.stats[1].value}</Text>
-    </TouchableOpacity>
+    </View>
   )
 }
 

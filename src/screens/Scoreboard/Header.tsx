@@ -1,6 +1,5 @@
 import React from 'react'
-import { Text, View } from 'react-native'
-import { styles } from './styles'
+import { StyleSheet, Text, View } from 'react-native'
 
 interface HeaderProps {
   itemInfo: string;
@@ -15,5 +14,33 @@ const Header: React.FC<HeaderProps> = ({ itemInfo }) => {
     </View>
   )
 }
+
+const styles = StyleSheet.create({
+  scoreHeader: {
+    display: 'flex',
+    flexDirection: 'row',
+    backgroundColor: '#af0034',
+    padding: 5,
+    width: '100%',
+  },
+  rankHeader: {
+    color: '#fff',
+    width: '15%',
+    justifyContent: 'center',
+    textAlign: 'center',
+  },
+  infoItemHeader: {
+    color: '#fff',
+    width: '60%',
+    justifyContent: 'center',
+    paddingStart: 15,
+  },
+  pointsHeader: {
+    color: '#fff',
+    width: '25%',
+    justifyContent: 'center',
+    textAlign: 'center',
+  }
+})
 
 export default Header
