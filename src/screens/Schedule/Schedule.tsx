@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
-import { FlatList, SafeAreaView, Text } from 'react-native'
-import { fetchNews, fetchSchedule } from '../../api/api'
+import { FlatList, SafeAreaView, StyleSheet } from 'react-native'
+import { fetchSchedule } from '../../api/api'
 import ScheduleItem from './ScheduleItem';
 
 export type RaceEvent = {
@@ -59,7 +59,7 @@ const Schedule = () => {
   }, [])
 
   return (
-    <SafeAreaView>
+    <SafeAreaView style={styles.container}>
       <FlatList
         data={schedule}
         renderItem={({ item }) => <ScheduleItem raceEvent={item} />}
@@ -68,5 +68,12 @@ const Schedule = () => {
     </SafeAreaView>
   )
 }
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: '#fff'
+  }
+})
 
 export default Schedule

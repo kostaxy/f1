@@ -23,15 +23,16 @@ const ScheduleItem = ({ raceEvent }: { raceEvent: RaceEvent }) => {
   return (
     <View style={styles.item}>
       <View style={styles.date}>
-        <Text>{`${raceEvent.endDate.getDate()} ${month[raceEvent.endDate.getMonth()]}`}</Text>
-        <Text>{raceEvent.endDate.getFullYear()}</Text>
+        <Text style={[styles.text, styles.textDate]}>{`${raceEvent.endDate.getDate()} ${month[raceEvent.endDate.getMonth()]}`}</Text>
+        <Text style={[styles.text, styles.textDate]}>{raceEvent.endDate.getFullYear()}</Text>
       </View>
-      <View style={raceEvent.completed ? styles.circleFinished : styles.circle}>
+      <View style={styles.circle}>
+        {raceEvent.completed && <View style={styles.dot} />}
         <View style={[styles.circleBeforeAfter, styles.circleBefore]} />
         <View style={[styles.circleBeforeAfter, styles.circleAfter]} />
       </View>
       <View style={styles.grandPrix}>
-        <Text>{raceEvent.gPrx}</Text>
+        <Text style={styles.text}>{raceEvent.gPrx}</Text>
       </View>
       {raceEvent.completed &&
         <View style={styles.winner}>
@@ -40,7 +41,7 @@ const ScheduleItem = ({ raceEvent }: { raceEvent: RaceEvent }) => {
               source={require('../../res/images/trophy.png')} // Local image path
               style={styles.trophy}
             />
-            <Text>Winner</Text>
+            <Text >Winner</Text>
 
           </View>
           <Text style={styles.textWinner}>{raceEvent.winner}</Text>
@@ -64,23 +65,24 @@ const styles = StyleSheet.create({
     width: 20,
     borderRadius: 10, // Half of the height/width to make it a circle
     borderWidth: 3,
-    borderColor: '#000',
+    borderColor: '#ff232b',
     backgroundColor: 'transparent', // Optional: Set background color if needed
     position: 'relative',
   },
-  circleFinished: {
-    height: 20,
-    width: 20,
-    borderRadius: 10, // Half of the height/width to make it a circle
-    borderWidth: 3,
-    borderColor: '#000',
-    backgroundColor: '#ffd500ce', // Optional: Set background color if needed
-    position: 'relative',
+  dot: {
+    position: 'absolute',
+    top: '50%',
+    left: '50%',
+    transform: [{ translateX: -5 }, { translateY: -5 }], // Center the dot
+    height: 10,
+    width: 10,
+    borderRadius: 5, // Half of the height/width to make it a circle
+    backgroundColor: '#ff232b',
   },
   circleBeforeAfter: {
     position: 'absolute',
-    backgroundColor: '#000',
-    width: 3,
+    backgroundColor: '#ff232b',
+    width: 2,
   },
   circleBefore: {
     height: 18,
@@ -102,11 +104,18 @@ const styles = StyleSheet.create({
     marginLeft: 'auto',
     paddingEnd: 20,
     display: 'flex',
-    alignItems: 'flex-end'
+    alignItems: 'flex-end',
+    color: '#000'
   },
   textWinner: {
     fontSize: 12,
     color: '#000'
+  },
+  text: {
+    color: '#000'
+  },
+  textDate: {
+    textAlign: 'right'
   },
   trophy: {
     width: 12,
@@ -115,7 +124,6 @@ const styles = StyleSheet.create({
   },
   date: {
     width: 60,
-    paddingStart: 10
   }
 });
 export default ScheduleItem

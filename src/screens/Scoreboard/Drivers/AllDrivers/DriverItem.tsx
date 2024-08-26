@@ -1,9 +1,9 @@
 import React from 'react'
 import { Image, Text, TouchableOpacity, View } from 'react-native'
-import { styles } from './styles'
 import { RouteProp } from '@react-navigation/native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { Driver } from './Drivers';
+import { styles } from '../../styles';
 
 // Define the types for navigation and route
 type RootStackParamList = {
@@ -28,21 +28,13 @@ const DriverItem = ({ driver, navigation }: Props) => {
     >
       <Text style={styles.rank}>{driver?.stats[0]?.value}</Text>
       <View style={styles.infoItem}>
-        {
-          driver?.athlete?.headshot
-            ?
-            <Image
-              style={styles.image}
-              source={{
-                uri: driver.athlete.headshot,
-              }} />
-            :
-            <Image
-              style={styles.image}
-              source={
-                require('../../res/images/driveravatar.webp')}
-            />
-        }
+        <Image
+          style={styles.image}
+          source={
+            driver?.athlete?.headshot
+              ? { uri: driver.athlete.headshot }
+              : require('../../../../res/images/driveravatar.webp')
+          } />
         <View style={styles.infoItemInfo}>
           <View style={styles.infoItemName}>
             <Image

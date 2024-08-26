@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { FlatList, SafeAreaView, Text } from 'react-native'
+import { FlatList, ImageBackground, SafeAreaView, StyleSheet, Text } from 'react-native'
 import NewsItem from './NewsItem'
 import { fetchNews } from '../../api/api'
 
@@ -41,14 +41,31 @@ const News = () => {
   }, [])
 
   return (
-    <SafeAreaView>
-      <FlatList
-        data={news}
-        renderItem={({ item }) => <NewsItem news={item} />}
-        keyExtractor={item => item.id}
-      />
+    <SafeAreaView style={styles.container}>
+      <ImageBackground
+        source={
+          require('../../res/images/bg.jpg')}
+        resizeMode="cover"
+        style={styles.image}
+      >
+        <FlatList
+          data={news}
+          renderItem={({ item }) => <NewsItem news={item} />}
+          keyExtractor={item => item.id}
+        />
+      </ImageBackground>
     </SafeAreaView>
   )
 }
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+  },
+  image: {
+    flex: 1,
+    justifyContent: 'center',
+  }
+});
 
 export default News
